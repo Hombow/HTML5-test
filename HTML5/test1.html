@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <body>
+    <canvas id="myCanvas" width="300" height="300" style="border:1px solid">
+    </canvas>
+
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var ctx = canvas.getContext('2d');
+      var x = 150
+      var y = 150
+
+      var grd=ctx.createRadialGradient(x*1.2,y*1.2,30,x,y,50);
+      grd.addColorStop(0,"red");
+      grd.addColorStop(1,"white");
+
+      ctx.fillStyle=grd
+      ctx.fillRect(0,0,300,300);
+
+      ctx.moveTo(0,0);
+      ctx.lineTo(x,y);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(x,y,50,0,2*Math.PI);
+      ctx.stroke();
+
+    </script>
+  </body>
+</html>
