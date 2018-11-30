@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <canvas id="canvas" width="600" height="600" style="background-color:#333"></canvas>
+    <script type="text/javascript">
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      var middle = canvas.height / 2;
+
+      var distance
+      var rotation
+      var x;
+      var points = {};
+
+      ctx.translate(middle,middle);
+
+      ctx.beginPath()
+      ctx.arc(0,0,5,0,2*Math.PI)
+      ctx.fillStyle="white"
+      ctx.fill();
+
+      newpoint();
+
+      function point(dis,rot,spe)
+      {
+          this.distance = dis
+          this.rotation = rot
+          this.speed = spe
+      }
+
+      function newpoint()
+      {
+        x = points.length()
+        points[x] = new point(300 * Math.random(),2*Math.PI*Math.random(),20 * Math.random())
+        ctx.font = "30px Arial";
+        ctx.fillText(points[x["distance"]],10,10)
+
+        ctx.beginPath();
+        ctx.rotate(points[x["rotation"]]);
+        ctx.arc(points[x["distance"]],0,2,0,2*Math.PI);
+        ctx.fillStyle="white";
+        ctx.fill();
+        joinLine(distance)
+
+        ctx.rotate(-roatation);
+      }
+
+      function joinLine(distance)
+      {
+        ctx.beginPath();
+        ctx.strokeStyle="white";
+        ctx.globalAlpha=(300-distance)/250;
+        ctx.moveTo(0,0);
+        ctx.lineTo(distance,0);
+        ctx.stroke();
+      }
+    </script>
+  </body>
+</html>
