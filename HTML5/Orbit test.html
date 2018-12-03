@@ -11,52 +11,127 @@
       var ctx = canvas.getContext("2d");
       var middle = canvas.height / 2;
 
-      var distance
-      var rotation
       var x;
-      var points = {};
+      var points = [];
+      var theta
+      var lineLength
 
       ctx.translate(middle,middle);
 
-      ctx.beginPath()
-      ctx.arc(0,0,5,0,2*Math.PI)
-      ctx.fillStyle="white"
-      ctx.fill();
 
-      newpoint();
+      for(var i = 0; i < 10; i++)
+      {
+        newpoint()
+      }
+
+      setInterval(draw,1000/30)
+
+      function draw ()
+      {
+        ctx.clearRect(-300,-300,canvas.width,canvas.height)
+        move();
+        ctx.font = "30px Arial"
+      }
 
       function point(dis,rot,spe)
       {
-          this.distance = dis
-          this.rotation = rot
-          this.speed = spe
+        this.distance = dis
+        this.rotation = rot
+        this.speed = spe
       }
 
       function newpoint()
       {
-        x = points.length()
-        points[x] = new point(300 * Math.random(),2*Math.PI*Math.random(),20 * Math.random())
-        ctx.font = "30px Arial";
-        ctx.fillText(points[x["distance"]],10,10)
+        x = points.length
+        points[x] = new point(200 * Math.random() + 50,2*Math.PI*Math.random(), Math.random() * 2 + 2)
 
         ctx.beginPath();
-        ctx.rotate(points[x["rotation"]]);
-        ctx.arc(points[x["distance"]],0,2,0,2*Math.PI);
+        ctx.globalAlpha=(1);
+        ctx.rotate(points[x]["rotation"]);
+        ctx.arc(points[x]["distance"],0,2,0,2*Math.PI);
         ctx.fillStyle="white";
         ctx.fill();
-        joinLine(distance)
+        joinLine(x)
 
-        ctx.rotate(-roatation);
+        ctx.rotate(-(points[x]["rotation"]));
       }
 
-      function joinLine(distance)
+      function joinLine(nom)
       {
-        ctx.beginPath();
-        ctx.strokeStyle="white";
-        ctx.globalAlpha=(300-distance)/250;
-        ctx.moveTo(0,0);
-        ctx.lineTo(distance,0);
-        ctx.stroke();
+          for(var x3 = 0; x3 < points.length; x3++)
+          {
+            if(x3 > nom)
+            {
+              // maths
+              theta = Math.max(points[x3]["rotation"],points[nom]["rotation"]) - Math.min(points[x3]["rotation"],points[nom]["rotation"])
+              lineLength = Math.sqrt(points[x3]["distance"]**2+points[nom]["distance"]**2-2*points[x3]["distance"]*points[nom]["distance"]*Math.cos(theta))
+              // actual drawing
+              ctx.beginPath();
+              if ((200-lineLength)/200 > 0)
+              {
+                ctx.globalAlpha=((300-lineLength)/300);
+              }
+              else
+              {
+                ctx.globalAlpha = 0
+              }
+              ctx.strokeStyle="white";
+              ctx.rotate(points[x3]["rotation"])
+              ctx.moveTo(points[x3]["distance"],0)
+              ctx.rotate(-points[x3]["rotation"])
+              ctx.rotate(points[nom]["rotation"])
+              ctx.lineTo(points[nom]["distance"],0);
+              ctx.rotate(-points[nom]["rotation"])
+              ctx.stroke();
+            }
+          }
+      }
+
+      function move()
+      {
+        // speed and distance for all of the points need to be changed before any lines are drawn
+        for(var x2 = 0; x2 < points.length; x2++)
+        {
+          //Random speed and distance changes
+          if (points[x2]["speed"] > 2 && points[x2]["speed"] < 8)
+          {
+            points[x2]["speed"] = points[x2]["speed"] + (Math.random()-0.5)
+          }
+          else if (points[x2]["speed"] < 2)
+          {
+            points[x2]["speed"] = points[x2]["speed"] + (Math.random())
+          }
+          else
+          {
+            points[x2]["speed"] = points[x2]["speed"] - (Math.random())
+          }
+          if (points[x2]["distance"] > 50 && points[x2]["distance"] < 250)
+          {
+            points[x2]["distance"] = points[x2]["distance"] + (Math.random()*2-1)
+          }
+          else if (points[x2]["distance"] < 50)
+          {
+            points[x2]["distance"] = points[x2]["distance"] + (Math.random())
+          }
+          else
+          {
+            points[x2]["distance"] = points[x2]["distance"] - (Math.random())
+          }
+          // setting rotation change for all points
+          points[x2]["rotation"] = points[x2]["rotation"] + (points[x2]["speed"]*2)/points[x2]["distance"]
+        }
+
+        for(var x2 = 0; x2 < points.length; x2++)
+        {
+          ctx.beginPath();
+          ctx.rotate(points[x2]["rotation"])
+          ctx.globalAlpha=(0.5);
+          ctx.arc(points[x2]["distance"],0,2,0,2*Math.PI);
+          ctx.fillStyle="white";
+          ctx.fill();
+          ctx.rotate(-points[x2]["rotation"])
+          joinLine(x2);
+        }
       }
     </script>
   </body>
