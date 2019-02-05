@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="300" style="background-color:grey"></canvas>
+    <script type="text/javascript">
+      var canvas = document.getElementById("canvas")
+      var ctx = canvas.getContext("2d")
+      var middle = canvas.height / 2
+
+      ctx.translate(middle,middle)
+
+      var centerend = 10
+      var upperend = 50
+      var lowerend = 30
+      var upperchange = upperend/3
+      var lowerchange = lowerend/3
+      var upper = upperend
+      var lower = lowerend
+      var close = 3
+      var timer = Math.random()*20
+
+      setInterval(draw,60)
+
+      function draw()
+      {
+        ctx.clearRect(-150,-150,canvas.width,canvas.height)
+        ctx.rotate(Math.PI/(Math.random()*40+40))
+        closing()
+        pupil()
+        pupilerase()
+        if(close === 3 && timer < 0)
+        {
+          close = 1
+        }
+        else
+        {
+          timer = timer - 1
+        }
+        if(close === 1)
+        {
+          lower = lower - lowerchange
+          upper = upper - upperchange
+          if(upper <= upperchange)
+          {
+            close = 2
+          }
+        }
+        else if (close===2)
+        {
+          upper = upper + upperchange
+          lower = lower + lowerchange
+          if(upper > upperend-upperchange)
+          {
+            close = 3
+            timer = Math.random()*60
+          }
+        }
+      }
+
+      function closing()
+      {
+        ctx.fillStyle="#ffffff"
+        ctx.beginPath();
+        ctx.moveTo(-60,0)
+        ctx.quadraticCurveTo(0,-upper+9,60,0)
+        ctx.quadraticCurveTo(0,lower+11,-60,0)
+        ctx.fill()
+      }
+      function pupil()
+      {
+        ctx.fillStyle="green"//'#'+Math.floor(Math.random()*16777215).toString(16)
+        ctx.beginPath()
+        ctx.arc(0,0,20,0,Math.PI*2)
+        ctx.fill()
+
+        ctx.fillStyle="#000000"
+        ctx.beginPath()
+        ctx.arc(0,0,8,0,Math.PI*2)
+        ctx.fill()
+      }
+
+      function pupilerase()
+      {
+        ctx.fillStyle="grey"
+
+        ctx.beginPath()
+        ctx.moveTo(-150,-upperend+9)
+        ctx.lineTo(-150,0)
+        ctx.lineTo(-60,0)
+        ctx.quadraticCurveTo(0,-upper+9,60,0)
+        ctx.lineTo(150,0)
+        ctx.lineTo(150,-upperend+9)
+        ctx.fill()
+
+        ctx.beginPath()
+        ctx.moveTo(-60,upperend+9)
+        ctx.lineTo(-60,0)
+        ctx.quadraticCurveTo(0,lower+11,60,0)
+        ctx.lineTo(60,upperend+9)
+        ctx.fill()
+      }
+    </script>
+  </body>
+</html>
