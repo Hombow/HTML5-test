@@ -23,6 +23,7 @@
       var close = 3
       var timer = Math.random()*20
       var timer2
+      var color = getRndColor()
 
       setInterval(draw,60)
 
@@ -65,6 +66,13 @@
           }
         }
       }
+      function getRndColor()
+      {
+        var r = 255*Math.random()|0,
+        var g = 255*Math.random()|0,
+        var b = 255*Math.random()|0;
+        return 'rgb(' + r + ',' + g + ',' + b + ')';
+      }
 
       function closing()
       {
@@ -77,7 +85,7 @@
       }
       function pupil()
       {
-        ctx.fillStyle="green"//'#'+Math.floor(Math.random()*16777215).toString(16)
+        ctx.fillStyle=color//'#'+Math.floor(Math.random()*16777215).toString(16)
         ctx.beginPath()
         ctx.arc(0,0,20,0,Math.PI*2)
         ctx.fill()

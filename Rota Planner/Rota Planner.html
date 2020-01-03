@@ -9,7 +9,7 @@
       var first = ["Chris", "Noah", "Robin", "Lara", "Oliver", "Alex", "Trent"]
       var mest = ["Joel", "Row", "Kai", "Alex", "Robin", "Katie", "Ash", "Oliver", "Noah"]
       var combined = ["Chris", "Lara", "Joel", "Row", "Kai", "Katie", "Robin", "Alex", "Ash",
-          "Oliver", "Noah", "Trent"]
+        "Oliver", "Noah", "Trent"]
       var okayshift = [4, 4, 4, 4, 4, 4, 3, 4, 4, 4, 4, 4]
       var okaynight = [3, 2, 3, 2, 2, 1, 0, 3, 1, 3, 1, 3]
       var people = combined.length
@@ -20,89 +20,131 @@
       var index = 0
       var number = 0
       var check = 0
+      var night = []
       var shifts = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
-          "", "", "", "", "", "", "", "", "", "", "", "", ""]
+        "", "", "", "", "", "", "", "", "", "", "", "", ""]
       var order = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0, 0]
-      function calculate()
+        0, 0, 0, 0, 0, 0, 0, 0]
+      function Calculate()
       {
         while(index <= (shiftno - 1))
         {
-          if(index % 4 == 0 or index % 4 == 1)
+          if(index % 4 === 0 || index % 4 === 1)
           {
             shifts[index] = first[order[index]]
-          } else {
+          }
+          else
+          {
             shifts[index] = mest[order[index]]
           }
           for(i=0; i < combined.length-1; i++)
           {
             if(shifts.count(combined[i]) > okayshift[i])
             {
-              check++
+              check ++
             }
           }
           night = []
-          for i in range(len(shifts)):
-            if (i % 8) < 4:
+          for(i=0; i < shifts.length-1;i++)
+          {
+            if((i % 8) < 4)
+            {
               night.append(shifts[i])
-          for i in range(len(combined)):
-            if (night.count(combined[i]) > okaynight[i]):
-              check += 1
-          for i in range(int(asdf)):
-            nodouble = []
-            for j in range(8):
-              nodouble.append(shifts[(4 * i + j)])
-            for j in range(len(combined)):
-              if (nodouble.count(combined[j]) > 1):
-                check += 1
+            }
+          }
 
-          if (check > 0)
+          for(i=0; i < combined.length-1; i++)
           {
-            order[index] += 1
+            if(night.count(combined[i]) > okaynight[i])
+            {
+              check ++
+            }
           }
-          if (check == 0)
+
+          for(i=0; i < asdf.length-1; i++)
           {
-            index += 1
+            nodouble = []
+            for(j=0; j < 7; j--)
+            {
+              nodouble.append(shifts[(4 * i + j)])
+            }
+            for(j=0; j < combined.length-1; j++)
+            {
+              if(nodouble.count(combined[j]) > 1)
+              {
+                check ++
+              }
+            }
           }
-          if (index % 4 == 0 or index % 4 == 1)
+
+          if(check > 0)
           {
-            if (order[index] > firstnumber)
+            order[index] ++
+          }
+          if(check === 0)
+          {
+            index ++
+          }
+          if(index % 4 === 0 || index % 4 === 1)
+          {
+            if(order[index] > firstnumber)
             {
               order[index] = 0
               shifts[index] = ""
-              index -= 1
-              order[index] += 1
+              index --
+              order[index] ++
             }
           }
           else
           {
-            if (order[index] > mestnumber)
+            if(order[index] > mestnumber)
             {
               order[index] = 0
               shifts[index] = ""
-              index -= 1
-              order[index] += 1
+              index --
+              order[index] ++
             }
           }
           check = 0
         }
       }
+
+      var RowI = 1
+
+      function NewRowFun()
+      {
+        var table = document.getElementById("InputTable");
+        var NewRow = table.insertRow(-1);
+        var Newcell1 = NewRow.insertCell(0);
+        var Newcell2 = NewRow.insertCell(1);
+        var Newcell3 = NewRow.insertCell(2);
+        var Newcell4 = NewRow.insertCell(3);
+        var Newcell5 = NewRow.insertCell(4);
+        Newcell1.innerHTML = '<input id="N' + RowI + '" type="text"></input>';
+        Newcell2.innerHTML = '<input id="F' + RowI + '" type="checkbox"></input>';
+        Newcell3.innerHTML = '<input id="M' + RowI + '" type="checkbox"></input>';
+        Newcell4.innerHTML = '<input id="D' + RowI + '" type="number" value="0"></input>';
+        Newcell5.innerHTML = '<input id="I' + RowI + '" type="number" value="0"></input>';
+        RowI++
+      }
     </script>
     <div height="100">
-      <input type="button" name="NewPerson" value="Add New Person">
+      <input type="button" name="NewPerson" onclick="NewRowFun()" value="Add New Person">
     </div>
-    <table border="thin">
+    <table id="InputTable" border="thin">
       <thead>
         <td>Name</td>
-        <td>First-Aid/Mest-Up/Both</td>
-        <td>number of shifts</td>
-        <td>night shifts?</td>
+        <td style="width:10">First-Aid</td>
+        <td style="width:10">Mest-Up</td>
+        <td>Number of shifts</td>
+        <td>Night shifts?</td>
       </thead>
       <tr>
-        <td><input></td>
-        <td><input></td>
-        <td><input width="50"></td>
-        <td><input></td>
+        <td><input id="N0" type="text"></input></td>
+        <td><input id="F0" type="checkbox"></input></td>
+        <td><input id="M0" type="checkbox"></input></td>
+        <td><input id="D0" type="number" value="0"></input></td>
+        <td><input id="I0" type="number" value="0"></input></td>
       </tr>
     </table>
   </body>
