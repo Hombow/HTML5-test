@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <canvas id="canvas" width="600" height="1200" style="background-color:#333"></canvas>
+    <script type="text/javascript">
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      var middle = canvas.width / 2;
+      ctx.strokeStyle="balck";
+      ctx.fillStyle="white";
+
+      var lineMax = 80
+      var numOPoints = 100
+
+      var x;
+      var points = [7,5,4,8,3,7];
+      var heighti
+      var heighticalc
+      var lineLength
+      var chordlength = 200
+
+      var speed
+      var distance
+
+      ctx.translate(middle,middle);
+
+      draw()
+
+      function draw()
+      {
+        ctx.beginPath();
+        ctx.fillStyle="orange";
+        ctx.arc(0,0,200,0,2*Math.PI)
+        ctx.fill();
+        ctx.fillStyle="black";
+        ctx.beginPath()
+        ctx.arc(0,points[0]*20,3,0,Math.PI*2)
+        ctx.fill();
+
+        heighti = 200/34
+
+        for(i=1;i<6;i++)
+        {
+          ctx.beginPath();
+          ctx.moveTo(0,points[i-1]*20)
+          ctx.rotate(points[i])
+          ctx.lineTo(0,points[i]*20)
+          ctx.stroke();
+          ctx.beginPath()
+          ctx.arc(0,points[i]*20,3,0,Math.PI*2)
+          ctx.fill();
+          lineLength+=points[i]
+          chordlength = (Math.sqrt(Math.pow(200,2)-Math.pow(lineLength*heighti,2)))
+          ctx.beginPath()
+          ctx.arc(0,0,chordlength,0,Math.PI*2)
+          ctx.stroke();
+        }
+      }
+    </script>
+  </body>
+</html>
