@@ -1,0 +1,82 @@
+body {
+    background-color: #fafafa;
+    color: #333333;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-align: left;
+}
+
+button {
+    background-color: #dddddd;
+    border-style: solid;
+    border-color: #444444;
+    color: #333333;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    height: 25px;
+}
+
+input {
+    width: 120px;
+}
+
+select {
+    width: 120px;
+}
+
+td {
+    text-align: left;
+    border-style: none;
+}
+
+table {
+    width: 800px;
+}
+
+p {
+    height: 10px;
+}
+
+.imgbox {
+    display: grid;
+    height: 100%;
+}
+
+.center-fit {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
+
+.smalltext {
+    font-size: 70%;
+}
+
+.PenalImg {
+    width: 200px;
+}
+
+.inputnum {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    background-color: #eeeeee;
+    border-style: solid;
+    border-color: #444444;
+}
+
+.hiddencell {
+    width: 0px;
+}
+
+.width10 {
+    width: 10px;
+}
+
+.height10 {
+    width: 10px;
+}
+
+.height20 {
+    width: 20px;
+}

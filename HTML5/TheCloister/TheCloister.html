@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <link rel="stylesheet" href="Main.css">
+    <script src="Main.js"></script>
+    <meta charset="utf-8">
+    <id></id>
+</head>
+
+<body>
+    <div style="height: 20px;align-items: unset;">
+        <h1>THE CLOISTER</h1>
+        <Button>How to Use this Site</Button>
+    </div>
+    <center>
+        <div style="height: 80px;"></div>
+        <div style="height: 20px;" id="Start">
+            <button id="PilotStart" onclick="StartPilot()">Pilot</button>
+            <button id="OperatorStart" onclick="StartOperator()">Operator</button>
+            <button id="BackStart" onclick="StartBack()" hidden>Back</button>
+        </div>
+        <div id="Round0">
+            <div id="Pilot">
+                <table>
+                    <tr>
+                        <td>
+                            You’ve been away from the planet for such a long time. But you’re almost home- you can see the planet spinning below you, gleaming from your ship. The sun is rising and setting as you rotate, again and again. It’s overwhelming. You weren’t sure that you’d
+                            ever see this again. You just need to re-enter the atmosphere and land safely; there is just this one, last step before you are home.
+                        </td>
+                    </tr>
+
+                    <tr id="PilChoice0" class="height10"></tr>
+                    <tr>
+                        <td>
+                            Pick one from each category, then choose your name.
+                        </td>
+                    </tr>
+                    <tr class="height10"></tr>
+                    <tr>
+                        <td id="PilChoice0">
+                            <table>
+                                <tr>
+                                    <td style="width: 200px;">You're Ship Is:</td>
+                                    <td>
+                                        <select name="PilotShipChoice" id="PilotShipChoice">
+                                            <option value="Blank"></option>
+                                            <option value="Outdated">Outdated</option>
+                                            <option value="Wrecked">Wrecked</option>
+                                            <option value="HandBuilt">Hand-Built</option>
+                                            <option value="Bulky">Bulky</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="height10"></tr>
+                                <tr>
+                                    <td>You're Mood Is:</td>
+                                    <td>
+                                        <select name="PilotMoodChoice" id="PilotMoodChoice">
+                                            <option value="Blank"></option>
+                                            <option value="Hopeful">Hopeful</option>
+                                            <option value="Terrified">Terrified</option>
+                                            <option value="Homesick">Homesick</option>
+                                            <option value="Determined">Determined</option>
+                                            <option value="Brave">Brave</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="height20"></tr>
+                                <tr>
+                                    <td>
+                                        Your Name Is:
+                                    </td>
+                                    <td>
+                                        <input type="text" name="PilotName" id="PilotName">
+                                    </td>
+                                </tr>
+                                <tr class="height10"></tr>
+                                <tr>
+                                    <td>
+                                        Your Operator's Name Is:
+                                    </td>
+                                    <td>
+                                        <input type="text" name="OperatorName" id="OperatorName">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <tr id="PilChoice0" class="height10"></tr>
+                        <tr>
+                            <td>
+                                <center>
+                                    <button id="Next">NEXT</button>
+                                </center>
+                            </td>
+                        </tr>
+                </table>
+            </div>
+            <div id="Operator">
+
+            </div>
+        </div>
+    </center>
+</body>
