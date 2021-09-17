@@ -9,96 +9,929 @@
 </head>
 
 <body>
-    <div style="height: 20px;align-items: unset;">
+    <div style="height: 20px;">
         <h1>THE CLOISTER</h1>
-        <Button>How to Use this Site</Button>
+        <Button onclick="Instructions()">How to Use this Site</Button>
+    </div>
+    <div id="Instructions" class="Instructions" hidden>
+        <table style="text-align: center;width: 100%;">
+            <tr class="height20">
+            </tr>
+            <tr>
+                <td style="width: 150px;"></td>
+                <td>- This is a html version of The Cloister</td>
+                <td style="width: 150px;"></td>
+            </tr>
+            <tr class="height10">
+            </tr>
+            <tr>
+                <td></td>
+                <td>- It is suggested that you have a copy of the pdf to hand (can be found <a id="InstructionsLink" href="https://everestpipkin.itch.io/the-cloister">here</a>)</td>
+            </tr>
+            <tr class="height10">
+            </tr>
+            <tr>
+                <td></td>
+                <td>- In order to play the game, choose between the two of you which will be the Pilot, and which will be the Operator</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>- Then click the appropriate button, following the prompts as you go</td>
+            </tr>
+            <tr class="height10">
+            </tr>
+            <tr>
+                <td></td>
+                <td>- While progressing, make sure that both of you have no more instructions to complete before pressing next</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>- The prompts will tell you to ask questions, once the question is asked feel free to press next.</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>- A prompt may ask you to give information to the other player, the details for this may not be given, feel free to make up details or be vauge about what is being told to the other player</td>
+            </tr>
+            <tr class="height10">
+            </tr>
+            <tr>
+                <td></td>
+                <td>- If there apears to be a problem, reloading the page will reset the progress and should fix things</td>
+            </tr>
+            <tr class="height10">
+            </tr>
+            <tr>
+                <td></td>
+                <td><button onclick="InstructionReturn()" id="InstructionsButton">Return</button></td>
+            </tr>
+            <tr class="height20">
+            </tr>
+        </table>
     </div>
     <center>
+
         <div style="height: 80px;"></div>
         <div style="height: 20px;" id="Start">
             <button id="PilotStart" onclick="StartPilot()">Pilot</button>
             <button id="OperatorStart" onclick="StartOperator()">Operator</button>
             <button id="BackStart" onclick="StartBack()" hidden>Back</button>
         </div>
-        <div id="Round0">
-            <div id="Pilot">
+
+        <div id="Round0" hidden>
+            <div class="Pilot" hidden>
                 <table>
                     <tr>
                         <td>
-                            You’ve been away from the planet for such a long time. But you’re almost home- you can see the planet spinning below you, gleaming from your ship. The sun is rising and setting as you rotate, again and again. It’s overwhelming. You weren’t sure that you’d
-                            ever see this again. You just need to re-enter the atmosphere and land safely; there is just this one, last step before you are home.
+                            - You’ve been away from the planet for such a long time. But you’re almost home- you can see the planet spinning below you, gleaming from your ship. The sun is rising and setting as you rotate, again and again. It’s overwhelming. You weren’t sure that
+                            you’d ever see this again. You just need to re-enter the atmosphere and land safely; there is just this one, last step before you are home.
                         </td>
                     </tr>
 
-                    <tr id="PilChoice0" class="height10"></tr>
-                    <tr>
-                        <td>
-                            Pick one from each category, then choose your name.
-                        </td>
-                    </tr>
                     <tr class="height10"></tr>
-                    <tr>
-                        <td id="PilChoice0">
+                    <!--PilChoice0Start is everything that is hidden once the choice is made-->
+                    <tr id="PilChoice0Start">
+                        <td>
                             <table>
                                 <tr>
-                                    <td style="width: 200px;">You're Ship Is:</td>
+                                    <td id="PilotChoice0Txt">
+                                        - Pick one from each category, then choose your name.
+                                    </td>
+                                </tr>
+
+                                <tr class="height10"></tr>
+
+                                <tr>
                                     <td>
-                                        <select name="PilotShipChoice" id="PilotShipChoice">
-                                            <option value="Blank"></option>
-                                            <option value="Outdated">Outdated</option>
-                                            <option value="Wrecked">Wrecked</option>
-                                            <option value="HandBuilt">Hand-Built</option>
-                                            <option value="Bulky">Bulky</option>
-                                        </select>
+                                        <table id="PilChoice0Table">
+                                            <!--The Table for deciding Pilots Choices, new table so can have 2 collumns easily-->
+                                            <tr class="height25">
+                                                <td style="width: 400px;">
+                                                    - Your Ship Is<span id="PilotShipDescription">:</span>
+                                                </td>
+                                                <td>
+                                                    <select name="PilotShipChoice" id="PilotShipChoice">
+                                                        <option value="Blank"></option>
+                                                        <option value="Outdated">Outdated</option>
+                                                        <option value="Wrecked">Wrecked</option>
+                                                        <option value="HandBuilt">Hand-Built</option>
+                                                        <option value="Bulky">Bulky</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="height25">
+                                                <td>
+                                                    - Your Mood Is<span id="PilotMoodDescription">:</span>
+                                                </td>
+                                                <td>
+                                                    <select name="PilotMoodChoice" id="PilotMoodChoice">
+                                                        <option value="Blank"></option>
+                                                        <option value="Hopeful">Hopeful</option>
+                                                        <option value="Terrified">Terrified</option>
+                                                        <option value="Homesick">Homesick</option>
+                                                        <option value="Determined">Determined</option>
+                                                        <option value="Brave">Brave</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="height25">
+                                                <td>
+                                                    - Your Name Is<span id="PilotNameDescription">:</span>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="PilotNameChoice" id="PilotNameChoice">
+                                                </td>
+                                            </tr>
+
+                                            <tr class="height25">
+                                                <td>
+                                                    - Your Operator's Name Is<span id="OperatorNameDescription">:</span>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="OperatorNameChoice" id="OperatorNameChoice">
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </td>
                                 </tr>
                                 <tr class="height10"></tr>
                                 <tr>
-                                    <td>You're Mood Is:</td>
                                     <td>
-                                        <select name="PilotMoodChoice" id="PilotMoodChoice">
-                                            <option value="Blank"></option>
-                                            <option value="Hopeful">Hopeful</option>
-                                            <option value="Terrified">Terrified</option>
-                                            <option value="Homesick">Homesick</option>
-                                            <option value="Determined">Determined</option>
-                                            <option value="Brave">Brave</option>
-                                        </select>
+                                        <center>
+                                            <button id="PilotNext0" onclick="Next()">NEXT</button>
+                                        </center>
                                     </td>
                                 </tr>
-                                <tr class="height20"></tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="Operator" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - You run the overnight shift down in communications. Your particular organization doesn’t fly at night, so this usually means catching up on your shows. You’ve got a regular coworker but they called in sick today, so you’ve got the whole place to yourself.
+                            It’s quiet, the machines are gently humming, and you are watching the sun go down. You’re thinking about having a snack.
+                        </td>
+                    </tr>
+
+                    <tr class="height10"></tr>
+                    <!--PilChoice0Start is everything that is hidden once the choice is made-->
+                    <tr id="OperatorChoice0Start">
+                        <td>
+                            <table>
+                                <tr>
+                                    <td id="OperatorChoice0Txt">
+                                        - Pick one from each category, then choose your name.
+                                    </td>
+                                </tr>
+
+                                <tr class="height10"></tr>
+
                                 <tr>
                                     <td>
-                                        Your Name Is:
-                                    </td>
-                                    <td>
-                                        <input type="text" name="PilotName" id="PilotName">
+                                        <table id="OperatorChoice0Table">
+                                            <!--The Table for deciding Operators Choices, new table so can have 2 collumns easily-->
+                                            <tr class="height25">
+                                                <td style="width: 400px;">
+                                                    - Your Job Is<span id="OperatorJobDescription">:</span>
+                                                </td>
+                                                <td>
+                                                    <select name="PilotShipChoice" id="OperatorJobChoice">
+                                                    <option value="Blank"></option>
+                                                    <option value="Fun">Fun</option>
+                                                    <option value="Studied">Studied</option>
+                                                    <option value="Boring">Boring</option>
+                                                    <option value="Temporary">Temporary</option>
+                                                </select>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="height25">
+                                                <td>
+                                                    - Your Voice Is<span id="OperatorVoiceDescription">:</span>
+                                                </td>
+                                                <td>
+                                                    <select name="OperatorVoiceChoice" id="OperatorVoiceChoice">
+                                                    <option value="Blank"></option>
+                                                    <option value="Soothing">Soothing</option>
+                                                    <option value="Nervous">Nervous</option>
+                                                    <option value="Sure">Sure</option>
+                                                    <option value="Kind">Kind</option>
+                                                </select>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="height25">
+                                                <td>
+                                                    - Your Name Is<span id="OpOperatorNameDescription">:</span>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="OpOperatorNameChoice" id="OpOperatorNameChoice">
+                                                </td>
+                                            </tr>
+
+                                            <tr class="height25">
+                                                <td>
+                                                    - Your Operator's Name Is<span id="OpPilotNameDescription">:</span>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="OpPilotNameChoice" id="OpPilotNameChoice">
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </td>
                                 </tr>
                                 <tr class="height10"></tr>
                                 <tr>
                                     <td>
-                                        Your Operator's Name Is:
+                                        <center>
+                                            <button id="OperatorNext0" onclick="Next()">NEXT</button>
+                                        </center>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="height20"></div>
+
+        <div id="Round1" hidden>
+            <div class="Pilot" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - You’re almost home, but you’ll need help for this last step. Re-entry is complicated at the best of times, and you’ll need to do it manually as you don’t have a navigation computer. Luckily, you rigged up a communications system that you’re almost sure
+                            will work. Someone at a systems control can help you if you can just reach them.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td id="PilotRoll1Txt">
+                                        - Roll a die and input the outcome:
                                     </td>
                                     <td>
-                                        <input type="text" name="OperatorName" id="OperatorName">
+                                        <input type="number" name="PilotRoll1Input" id="PilotRoll1Input">
                                     </td>
                                 </tr>
                             </table>
                         </td>
-                        <tr id="PilChoice0" class="height10"></tr>
-                        <tr>
-                            <td>
-                                <center>
-                                    <button id="Next">NEXT</button>
-                                </center>
-                            </td>
-                        </tr>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="PilotRoll1Result">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height25" id="PilotRound1End" hidden>
+                            - Your call goes through. <b>What do you say?</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <button id="PilotNext1" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>
                 </table>
             </div>
-            <div id="Operator">
+
+            <div class="Operator" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - A persistent buzzing starts up somewhere in the empty office. You eventually isolate the sound, finding an older machine running some legacy software. There is a button on the machine labeled “ACCEPT” - you press it.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height25" id="OperatorRound1End" hidden>
+                            - There is a pilot in orbit, no known relation to your organization. They are entering descent and they need your help, now. <b>How do you respond?</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <button id="OperatorNext1" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="height20"></div>
+
+        <div id="Round2" hidden>
+            <div class="Pilot" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - You are circling the planet. You can see the weather patterns spiraling, the shape of the land-masses you grew up memorizing, the lights marking cities. You almost get lost in the watching, but you focus - you need to help
+                            <span class="OperatorName"></span> locate your craft.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td id="PilotRoll2Txt">
+                                        - Roll a die and input the outcome (This number will be used again):
+                                    </td>
+                                    <td>
+                                        <input type="number" name="PilotRoll2Input" id="PilotRoll2Input">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="PilotRoll2Result">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="PilotRound2End" hidden>
+                            - Relay your positional information to <span class="OperatorName"></span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <button id="PilotNext2" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="Operator" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - You wait for <span class="PilotName"></span> to relay their position.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="OperatorChoice2Txt1" hidden>
+                            - You need to chart the pilot’s position against your own systems. The machine you are using is outdated, but it parallels the ones that you are trained on. Using the information the pilot gave you in combination with your organization’s radar, you think
+                            you’ve approximated the location of the pilot’s ship- though of course you can’t be entirely certain.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="OperatorChoice2Txt2" hidden>
+                            - There is silence on the line as you both pause. It will be a few minutes before anything needs to happen- the pilot’s ship will need to complete another full orbit of the planet before your flight path can be determined.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="OperatorChoice2Txt3" hidden>
+                            - you notice that your whole body is tense. You try to relax and think of something to say. You clear your throat.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="OperatorChoice2Txt" hidden>
+                            - Ask <span class="PilotName"></span> one of the following questions:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="OperatorChoice21" hidden>
+                            ---> <span class="PilotName"></span>, what are you planning to do first when you get back?
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="OperatorChoice22" hidden>
+                            ---> <span class="PilotName"></span>, what did you miss most from home while you’ve been up there?
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="OperatorRound2End" hidden>
+                            <i>- You may choose to ask follow-up questions. This may, at any appropriate point throughout the game, turn into a back and forth conversation.</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <button id="OperatorNext2" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="height20"></div>
+
+        <div id="Round3" hidden>
+            <div class="Pilot" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - You wait to see the landing site <span class="OperatorName"></span> can get you, make sure you're ready to relay your previous roll when requested
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="PilotChoice3Table" hidden>
+                            <table>
+                                <tr>
+                                    <td>
+                                        - You receive this information and nod. You will soon need to begin steering your craft to align with this path. But you have a few minutes before anything happens, and you find yourself tapping your console, wanting to fill the empty air.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="PilotChoice3Txt" hidden>
+                                        - Ask <span class="OperatorName"></span> one of the following questions:
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="PilotChoice31" hidden>
+                                        ---> <span class="OperatorName"></span>, where are you right now? What is outside the window?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="PilotChoice32" hidden>
+                                        ---> <span class="OperatorName"></span>, where do you live? What is your neighborhood like?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="PilotChoice33" hidden>
+                                        ---> <span class="OperatorName"></span>, where did you grow up? Do you still visit there?
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <button id="PilotNext3" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="Operator" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - You can see on your flickering machine that <span class="PilotName"></span> has completed another rotation of the planet. You’re as certain as you’ll ever be about their path. You need to find them a landing site.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td id="OperatorRoll3Txt">
+                                        - Roll a die. Add the pilot’s previous roll (the die they rolled to determine position) to your own number:
+                                    </td>
+                                    <td>
+                                        <input type="number" name="OperatorRoll3Input" id="OperatorRoll3Input">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="OperatorRoll3Result">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="OperatorRound3End" hidden>
+                            Relay your choice of landing to <span class="PilotName"></span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <button id="OperatorNext3" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
 
             </div>
         </div>
+
+        <div class="height20"></div>
+
+        <div id="Round4" hidden>
+            <div class="Pilot" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - it is time to nudge your ship out of orbit. The planet will do most of this work as you entangle yourself in its gravity. But first, you’ll need to slow down your orbital speed.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td id="PilotRoll4Txt" hidden>
+                                        - Roll a die and input the outcome (This number will be used again):
+                                    </td>
+                                    <td>
+                                        <input type="number" name="PilotRoll4Input" id="PilotRoll4Input">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="PilotRoll4Result">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="PilotRound4End" hidden>
+                            - Relay your situation to <span class="OperatorName"> when they ask</span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <button id="PilotNext4" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="Operator" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - There is not much for you to do- you sit in nervous silence while <span class="PilotName"></span> completes this maneuver. You can hear them holding their breath.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="OperatorChoice4Table" hidden>
+                            <table>
+                                <tr>
+                                    <td>
+                                        - Finally, they confirm that they have begun descent. In a few moments you will need to help them track their angle of entry. But for now, the planet is simply drawing them back in.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="OperatorChoice4Txt" hidden>
+                                        - In this moment of quiet, ask <span class="PilotName"></span> one of the following:
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="OperatorChoice41" hidden>
+                                        ---> <span class="PilotName"></span>, who are you going to try to see first when you get home? Do you know what you’ll say to them?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="OperatorChoice42" hidden>
+                                        ---> <span class="PilotName"></span>, what food have you been craving while you’ve been gone? Who made the best one you ever had?
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <button id="OperatorNext4" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="height20"></div>
+
+        <div id="Round5" hidden>
+            <div class="Pilot" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - You wait to see what <span class="OperatorName"></span> can do to calculate your descent angle and velocity
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="PilotChoice5Table" hidden>
+                            <table>
+                                <tr>
+                                    <td>
+                                        - You grit your teeth and begin to body the ship about, attempting to hold it steady against the heat and the speed. You roll left, then right, then left again - but you find your mind drifting towards home.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="PilotChoice5Txt" hidden>
+                                        - Ask <span class="OperatorName"></span> one of the following questions:
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="PilotChoice51" hidden>
+                                        ---> <span class="OperatorName"></span>, do you garden? Do you have a pet?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="PilotChoice52" hidden>
+                                        ---> <span class="OperatorName"></span>, do you have a partner? What are your friends like?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="PilotChoice53" hidden>
+                                        ---> <span class="OperatorName"></span>, do you have children? If not, do you want children?
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <button id="PilotNext5" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="Operator" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - <span class="PilotName"></span> has begun their descent towards this planet. You need to help them calculate their velocity and angle for reentry. The machine you are using to chart their path is whirring, displaying thousands
+                            of possible trajectories.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr id="OperatorRoll5Txt">
+                                    <td>
+                                        - Roll a die. (Remember the number, it will be used again next turn):
+                                    </td>
+                                    <td>
+                                        <input type="number" name="OperatorRoll5Input" id="OperatorRoll5Input">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="OperatorRoll5Result">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="OperatorRound5End" hidden>
+                            - Relay the correct velocity and angle to <span class="PilotName"></span>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <button id="OperatorNext5" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="height20"></div>
+
+        <div id="Round6" hidden>
+            <div class="Pilot" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - This next bit is tricky. You’ll have to be precise. You need to separate the shielded, aerodynamic part of the ship that you are in from all the extraneous parts that have gotten you here. The rest of your ship will burn up in the atmosphere- and you
+                            need to get away from it before it does.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td id="PilotRoll6Txt" hidden>
+                                        - Roll a die. Add the operator’s roll from the last turn, and your previous roll from the turn before, to this number.:
+                                    </td>
+                                    <td>
+                                        <input type="number" name="PilotRoll6Input" id="PilotRoll6Input">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="PilotRoll6Result">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="PilotRound6End" hidden>
+                            Remember to inform <span class="OperatorName"></span> when seperation has finished.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <button id="PilotNext6" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="Operator" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - You are quiet while <span class="PilotName"></span> completes this delicate task.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="OperatorChoice6Table" hidden>
+                            <table>
+                                <tr>
+                                    <td>
+                                        - You are glad to hear their confirmation when it is finished.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="OperatorChoice6Txt" hidden>
+                                        - After a pause, you ask <span class="PilotName"></span> one of the following questions:
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="OperatorChoice61" hidden>
+                                        ---> <span class="PilotName"></span>, where do you want to live when you get home?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="OperatorChoice62" hidden>
+                                        ---> <span class="PilotName"></span>, how will you spend your time when you get home?
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <button id="OperatorNext6" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="height20"></div>
+
+        <div id="Round7" hidden>
+            <div class="Pilot" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - Your hands are shaking. You can’t tell if it is from the rattling ship, the currents of firey plasma streaming around you, or your own grasping grip. You take a deep breath, and another. It is hot, the air tastes stale. Your body is heavy. The glass
+                            of the window is darkened by fire and you cannot see outside.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="PilotChoice7Txt" hidden>
+                            - Ask <span class="OperatorName"></span> one of the following questions:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="PilotChoice71" hidden>
+                            ---> <span class="OperatorName"></span>, do you garden? Do you have a pet?
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="PilotChoice72" hidden>
+                            ---> <span class="OperatorName"></span>, do you have a partner? What are your friends like?
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="PilotChoice73" hidden>
+                            ---> <span class="OperatorName"></span>, do you have children? If not, do you want children?
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <button id="PilotNext7" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="Operator" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - There is nothing left for you to do, but you still catch yourself moving wildly through the machine interface, combing for one last piece of information, one last directive to pass along.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="Operator7Txt">
+                            - You can hear the pilot breathing heavily on the line.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <center>
+                                <button id="OperatorNext7" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="height20"></div>
+
+        <div id="Round8" hidden>
+            <div class="Pilot" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - Your hands are shaking. You can’t tell if it is from the rattling ship, the currents of firey plasma streaming around you, or your own grasping grip. You take a deep breath, and another. It is hot, the air tastes stale. Your body is heavy. The glass
+                            of the window is darkened by fire and you cannot see outside.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="PilotRound8Txt" hidden>
+                            - You have just a moment of connection left.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="PilotRound8End" hidden>
+                            <b>- Say goodbye.</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="PilotRound8End2" hidden>
+                            <b>- Transmition Interupted.</b>
+                        </td>
+                    </tr>
+                    <!--<tr>
+                        <td>
+                            <center>
+                                <button id="Next8" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>-->
+                </table>
+            </div>
+
+            <div class="Operator" hidden>
+                <table>
+                    <tr>
+                        <td>
+                            - Your hands are shaking. You can’t tell if it is from the rattling ship, the currents of firey plasma streaming around you, or your own grasping grip. You take a deep breath, and another. It is hot, the air tastes stale. Your body is heavy. The glass
+                            of the window is darkened by fire and you cannot see outside.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="OperatorRound8Txt" hidden>
+                            - You have just a moment of connection left.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="OperatorRound8End" hidden>
+                            <b>- Say goodbye.</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="height20" id="OperatorRound8End2" hidden>
+                            <b>- Transmition Interupted.</b>
+                        </td>
+                    </tr>
+                    <!--<tr>
+                        <td>
+                            <center>
+                                <button id="Next8" onclick="Next()">NEXT</button>
+                            </center>
+                        </td>
+                    </tr>-->
+                </table>
+            </div>
+        </div>
+        <div style="height: 400px;"></div>
     </center>
 </body>

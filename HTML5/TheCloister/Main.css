@@ -2,7 +2,7 @@ body {
     background-color: #fafafa;
     color: #333333;
     font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
+    /*font-weight: bold;*/
     text-align: left;
 }
 
@@ -25,7 +25,6 @@ select {
 }
 
 td {
-    text-align: left;
     border-style: none;
 }
 
@@ -52,10 +51,6 @@ p {
     font-size: 70%;
 }
 
-.PenalImg {
-    width: 200px;
-}
-
 .inputnum {
     width: 20px;
     height: 20px;
@@ -63,6 +58,19 @@ p {
     background-color: #eeeeee;
     border-style: solid;
     border-color: #444444;
+    top: 40px;
+}
+
+.Instructions {
+    position: fixed;
+    top: 40px;
+    width: 800px;
+    background-color: whitesmoke;
+    border-style: solid;
+    border-color: black;
+    border-width: 4px;
+    z-index: 1;
+    margin: auto;
 }
 
 .hiddencell {
@@ -74,9 +82,168 @@ p {
 }
 
 .height10 {
-    width: 10px;
+    height: 10px;
 }
 
 .height20 {
-    width: 20px;
+    height: 20px;
+}
+
+.height40 {
+    height: 40px;
+}
+
+.height25 {
+    height: 25px;
+}
+
+.greyed {
+    color: #cfcfcf;
+}
+
+.Pilot {}
+
+.Operator {}
+
+.PilotName {
+    font-weight: bold;
+}
+
+.OperatorName {
+    font-weight: bold;
+}
+
+.FadeIn {
+    animation: opacIn 2s;
+    opacity: 1;
+}
+
+.FadeInDelay2 {
+    animation: opacIn2 4s;
+}
+
+.FadeInDelay4 {
+    animation: opacIn4 6s;
+}
+
+.FadeInDelay6 {
+    animation: opacIn6 8s;
+}
+
+.FadeInDelay12 {
+    animation: opacIn12 14s;
+}
+
+.FadeInDelay6Half {
+    animation: opacIn6Half 8s;
+    opacity: 0.8;
+}
+
+.FadeInEase {
+    animation-name: opacIn;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out
+}
+
+.FadeInPause {
+    animation-name: opacIn;
+    animation-duration: 4s;
+    animation-timing-function: cubic-bezier(1, 0, .64, .09);
+}
+
+.FadeOut {
+    animation: opacOut 2s;
+    opacity: 0;
+}
+
+.FadeOutHalf {
+    animation: opacOutHalf 2s;
+    opacity: 0.5;
+}
+
+@keyframes opacIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes opacOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes opacOutHalf {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.5;
+    }
+}
+
+@keyframes opacIn2 {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes opacIn4 {
+    0% {
+        opacity: 0;
+    }
+    66% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes opacIn6 {
+    0% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes opacIn12 {
+    0% {
+        opacity: 0;
+    }
+    88% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes opacIn6Half {
+    0% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.8;
+    }
 }
